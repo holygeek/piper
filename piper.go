@@ -24,7 +24,7 @@ func MustPipe(exe string, args ...string) (*bufio.Scanner, *bufio.Scanner) {
 
 	err = cmd.Start()
 	if err != nil {
-		log.Fatal("MustPipe:", exe, err)
+		log.Fatal(exe, err)
 	}
 
 	return bufio.NewScanner(stdout), bufio.NewScanner(stderr)
