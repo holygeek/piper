@@ -7,8 +7,8 @@ import (
 )
 
 // MustPipe returns stdout and stderr line scanners (bufio.Scanner) for the
-// the command created from the given argument. It calls log.Fatal() if the
-// command could not be started, or if the stdout or stderr plumbings failed
+// command created from the given argument. It calls log.Fatal() if the command
+// could not be started, or if the stdout or stderr plumbings failed
 func MustPipe(exe string, args ...string) (*bufio.Scanner, *bufio.Scanner) {
 	cmd := exec.Command(exe, args...)
 
