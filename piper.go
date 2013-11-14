@@ -6,10 +6,10 @@ import (
 	"os/exec"
 )
 
-// MustPipe returns stdout and stderr line scanners (bufio.Scanner) for the
-// command created from the given argument. It calls log.Fatal() if the command
-// could not be started, or if the stdout or stderr plumbings failed
-func MustPipe(exe string, args ...string) (*bufio.Scanner, *bufio.Scanner) {
+// MustPipe returns exec.Cmd, stdout and stderr line scanners (bufio.Scanner)
+// for the command created from the given argument. It calls log.Fatal() if the
+// command could not be started, or if the stdout or stderr plumbings failed
+func MustPipe(exe string, args ...string) (*exec.Cmd, *bufio.Scanner, *bufio.Scanner) {
 	cmd := exec.Command(exe, args...)
 
 	stderr, err := cmd.StderrPipe()
@@ -27,5 +27,5 @@ func MustPipe(exe string, args ...string) (*bufio.Scanner, *bufio.Scanner) {
 		log.Fatal(exe, err)
 	}
 
-	return bufio.NewScanner(stdout), bufio.NewScanner(stderr)
+	return cmd, bufio.NewScanner(stdout), bufio.NewScanner(stderr)
 }
