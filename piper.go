@@ -1,3 +1,4 @@
+// Package piper runs external commands. It wraps os/exec.
 package piper
 
 import (
